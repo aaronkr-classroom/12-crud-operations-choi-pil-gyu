@@ -5,14 +5,18 @@
  * Listing 15.9 (p. 224)
  */
 const mongoose = require("mongoose"),
-  Subscriber = require("../models/subscriber");
+  Subscriber = require("../models/Subscriber");
 
 // 데이터베이스 연결 설정
-mongoose.connect("mongodb://127.0.0.1:27017/ut-nodejs", {
-  useNewUrlParser: true,
+mongoose.connect(
+  "mongodb+srv://ut-node:1234@ut-node.kv6iahy.mongodb.net/?retryWrites=true&w=majority&appName=UT-NODE"
+);
+
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("db is connect!");
 });
 
-mongoose.connection;
 
 var subscribers = [
   {

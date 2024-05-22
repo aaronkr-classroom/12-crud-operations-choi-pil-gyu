@@ -8,11 +8,15 @@ const mongoose = require("mongoose"),
   Course = require("../models/Course");
 
 // 데이터베이스 연결 설정
-mongoose.connect("mongodb://127.0.0.1:27017/ut-nodejs", {
-  useNewUrlParser: true,
+mongoose.connect(
+  "mongodb+srv://ut-node:1234@ut-node.kv6iahy.mongodb.net/?retryWrites=true&w=majority&appName=UT-NODE"
+);
+
+const db = mongoose.connection;
+db.once("open", () => {
+  console.log("db is connect!");
 });
 
-mongoose.connection;
 
 var courses = [
   {
@@ -98,4 +102,4 @@ setTimeout(() => {
     .catch((error) => {
       console.log(`Error: ${error}`);
     });
-}, 500);
+}, 1500);
